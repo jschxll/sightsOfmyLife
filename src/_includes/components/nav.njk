@@ -1,0 +1,27 @@
+{% macro Nav(coll) %}
+<aside class="tree">
+    <a href="/">home</a>
+    {% for name, col in coll %}
+
+        {% if name != "all" %}
+        <details name="topic">
+            <summary>
+                <span>{{ name }}</span>
+                {% if name == "gallery"%}
+                    <img src="/img/camera.gif" width="30" height="30">
+                {% elif name == "thoughts"%}
+                    <img src="/img/pen.gif" width="30" height="30">
+                {% endif%}
+            </summary>
+            <ul>
+            {% for post in col %}
+                {% if post.data.title %}
+                    <li><a href="{{ post.url }}" title="{{ post.data.title }}">{{ post.data.title }}</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        </details>
+        {% endif %}
+    {% endfor %}
+</aside>
+{% endmacro %}

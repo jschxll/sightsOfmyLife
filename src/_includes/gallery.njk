@@ -1,0 +1,28 @@
+{% from "components/frame.njk" import Frame %}
+{% from "components/nav.njk" import Nav %}
+{% from "components/creativecommons.njk" import CreativeCommons %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bundle.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.svg">
+    <title>{{ title }}</title>
+  </head>
+  <body>
+    <main>
+      {{ Nav(collections) }}
+      <article>
+        <h1>{{ title }}</h1>
+        <div class="gallery">
+            {% for item in photos %}
+                {{ Frame(item.src, "photo", item.caption) }}
+            {% endfor %}
+        </div>
+      </article>
+    </main>
+    {{ CreativeCommons() }}
+  </body>
+</html>

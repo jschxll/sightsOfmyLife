@@ -1,0 +1,24 @@
+{% macro Book(title, key, value, isFirst) %}
+    {% if isFirst %}
+    <div class="currentBook">
+        <img id="cover-{{ title }}" loading="lazy">
+    </div>
+    {% else %}
+    <div class="book">
+        <img id="cover-{{ title }}" loading="lazy">
+    </div>
+    {% endif %}
+
+    <script>
+        var key = "{{ key }}";
+        var value = "{{ value }}";
+        var isFirst = {{ isFirst }};
+        var coverImg = document.getElementById("cover-{{ title }}");
+        var size = "M";
+        if (isFirst) {
+            size = "L";
+            coverImg.classList.add("current-book");
+        }
+        coverImg.src = `https://covers.openlibrary.org/b/${key}/${value}-${size}.jpg`;
+    </script>
+{% endmacro %}

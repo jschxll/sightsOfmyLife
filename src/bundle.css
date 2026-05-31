@@ -1,0 +1,294 @@
+@font-face {
+  font-family: "EBGaramond";
+  src: url("/fonts/EBGaramond.ttf");
+}
+
+@font-face {
+  font-family: "IBMPlexSans";
+  src: url("/fonts/IBMPlexSans.ttf");
+}
+
+:root {
+  --bg: #0f1117;
+  --bg-soft: #171a22;
+  --text: #e7e1d6;
+  --muted: #9ea3b0;
+  --accent: #7dd3a0;
+  --accent-soft: #4ade80;
+  --content-width: 1400px;
+  --sidebar-width: 240px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 2rem;
+  background-image: url("/img/stars.gif");
+  background-repeat: repeat;
+  color: var(--text);
+  font-family: IBMPlexSans, sans-serif;
+  width: min(100%, var(--content-width));
+  margin-inline: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: EBGaramond;
+  color: var(--muted);
+  line-height: 1.1;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+p,
+li,
+a,
+span {
+  font-size: clamp(1rem, 1vw + 0.8rem, 1.1rem);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-shadow: 0 0 12px rgba(111, 208, 140, 0.25);
+}
+
+main {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+  gap: 2rem;
+  background-color: var(--bg);
+  border-radius: 8px;
+  align-items: start;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+aside {
+  position: sticky;
+  top: 1rem;
+  align-self: start;
+  padding: 1rem;
+  font-size: clamp(1rem, 1.5vw, 1.4rem);
+}
+
+.tree img {
+  vertical-align: middle;
+}
+
+.prose {
+  width: 100%;
+  max-width: 850px;
+  padding-right: clamp(0rem, 3vw, 2rem);
+  padding-bottom: 2rem;
+}
+
+.prose p {
+  line-height: 1.8;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.md-img {
+  display: block;
+  width: min(700px, 100%);
+  height: auto;
+  margin: 2rem auto;
+  border-radius: 6px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: clamp(1rem, 4vw, 3rem);
+}
+
+.gallery-card {
+  position: relative;
+  transform: rotate(var(--rot));
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.gallery-card:nth-child(odd) {
+  --rot: -1deg;
+}
+
+.gallery-card:nth-child(even) {
+  --rot: 1deg;
+}
+
+.gallery-card:nth-child(3n) {
+  --rot: -0.5deg;
+}
+
+.gallery-img:hover {
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+  z-index: 2;
+  transform: rotate(0deg) scale(1.02);
+}
+
+.gallery-card img {
+  width: 300px;
+  height: auto;
+  border-radius: 4px;
+}
+
+.gallery-card figcaption {
+  margin-top: 0.75rem;
+  font-family: EBGaramond;
+  color: var(--accent-soft);
+}
+
+details {
+  cursor: pointer;
+  font-family: EBGaramond;
+  color: var(--muted);
+  margin-top: 0.5rem;
+}
+
+details ul {
+  margin: 0.5rem 0 0 0;
+  padding-left: 1rem;
+  list-style: none;
+}
+
+details ul li {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-bottom: 0.25rem;
+}
+
+details ul li::before {
+  content: "- ";
+}
+
+.books {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1rem;
+}
+
+.currentBook {
+  top: 1rem;
+}
+
+.creativecommons {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  width: fit-content;
+  padding: 1rem;
+}
+
+@media screen and (max-width: 900px) {
+  body {
+    padding: 0.75rem;
+  }
+
+  main {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  aside {
+    position: relative;
+    top: unset;
+    height: auto;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .prose {
+    max-width: 100%;
+    padding-right: 0;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  .gallery-card {
+    transform: none;
+  }
+
+  .window {
+    top: 5vh;
+    left: 5vw;
+    width: 90vw;
+    height: 80vh;
+  }
+}
+
+@media screen and (max-width: 940px) {
+  .book-layout {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .books {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .currentBook {
+    top: 1rem;
+    column-width: 1 / -1;
+  }
+}
+
+
+@media screen and (max-width: 480px) {
+  body {
+    padding: 0.5rem;
+  }
+
+  main {
+    padding: 0.75rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  aside {
+    font-size: 1rem;
+  }
+
+  .gallery {
+    gap: 1.25rem;
+  }
+}
