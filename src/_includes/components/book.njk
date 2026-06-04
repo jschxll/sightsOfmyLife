@@ -1,12 +1,14 @@
-{% macro Book(title, key, value, isFirst) %}
+{% macro Book(title, author, key, value, isFirst) %}
     {% if isFirst %}
-    <div class="currentBook">
+    <figure class="currentBook">
         <img id="cover-{{ title }}" loading="lazy">
-    </div>
+        <figcaption class="book-desc">{{ title }} by {{ author }}</figcaption>
+    </figure>
     {% else %}
-    <div class="book">
+    <figure class="book">
         <img id="cover-{{ title }}" loading="lazy">
-    </div>
+        <figcaption class="book-desc">{{ title }} by {{ author }}</figcaption>
+    </figure>
     {% endif %}
 
     <script>

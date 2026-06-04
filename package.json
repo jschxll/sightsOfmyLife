@@ -12,6 +12,7 @@
   "type": "module",
   "dependencies": {
     "@11ty/eleventy": "^3.1.5",
+    "@11ty/eleventy-plugin-rss": "^3.0.0",
     "@mdx-js/mdx": "^3.1.1",
     "luxon": "^3.7.2",
     "react-dom": "^19.2.6"

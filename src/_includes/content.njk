@@ -27,12 +27,12 @@
           <div>
             <div class="books">
               <div class="currentBook">
-              {{ Book(books[0].title, books[0].key, books[0].value, true) }}
+              {{ Book(books[0].title, books[0].author, books[0].key, books[0].value, true) }}
             </div>
 
             <div class="books-grid">              
               {% for book in books.slice(1) %}
-                {{ Book(book.title, book.key, book.value, false) }}
+                {{ Book(book.title, book.author, book.key, book.value, false) }}
               {% endfor %}
             </div>
           </div>
