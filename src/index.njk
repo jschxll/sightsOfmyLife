@@ -1,0 +1,31 @@
+---
+layout: base.njk
+title: Sights of My Life
+---
+{% set latest = collections.thoughts | first %}
+
+<h1 id="header">welcome to the machine</h1>
+<p>
+  hey hey, i'm jan and this is my digital home - more precisely: it will gradually become one.
+</p>
+<p>
+  in recent times I figured that the internet is soo much vaster than just the same few platforms
+  (i know it's obvious, but sometimes you have to actively question something to get the meaning) ...
+  so this is the result (YEAHH!!!)<br>
+</p>
+<p>
+  in my freetime I regularly
+  <a href="/thoughts/books">read</a>,
+  <a href="https://open.spotify.com/playlist/3goQXQE7nAI4l1qYrUrg93?si=d5e0d476cca14deb" target="_blank" rel="noopener">listen to music</a>,
+  <a href="https://github.com/jschxll" target="_blank" rel="noopener">code</a>,
+  play volleyball and enjoy nature.
+  ahh, and I'm really interested in astronomy / star gazing 💫<br>
+  Now let's go and get some <em>insights</em> :)
+</p>
+<h2>Latest content</h2>
+<ul>
+    <li><a href="{{ latest.url }}">{{ latest.data.title }}</a></li>
+</ul>
+<p>
+  <a href="/feed.xml">here</a> you'll find my feed!
+</p>
