@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xml:base="https://jschxll.net/" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    
+    <title>Sights of My Life</title>
+    <link>https://jschxll.net/</link>
+    <atom:link href="https://jschxll.net/feed.xml" rel="self" type="application/rss+xml" />
+    <description>A RSS feed of my content:)</description>
+    <language>en</language>
+    <item>
+      <title>Becoming a Meterologist - Weather Station 101</title>
+      <link>https://jschxll.net/thoughts/becoming_a_meterologist/</link><description>&lt;link rel=&quot;preload&quot; as=&quot;image&quot; href=&quot;https://jschxll.net/img/thoughts/final_weather_station.jpg&quot;&gt;&lt;link rel=&quot;preload&quot; as=&quot;image&quot; href=&quot;https://jschxll.net/img/thoughts/image.png&quot;&gt;&lt;img src=&quot;https://jschxll.net/img/thoughts/final_weather_station.jpg&quot; title=&quot;My final DIY waether station&quot; class=&quot;md-img&quot;&gt;
+&lt;p&gt;This is the (final) product🎉&lt;/p&gt;
+&lt;p&gt;In advance: I really underestimated the time I would need to finish the project. Material and soldering failure, unbelievable long delivery times and just my own faults in planning the project, summed up to a total of nearly 3 months. But it was really fun, seeing the pieces getting more and more together and eventually having a working weather station. Even though I have to admit, that I obviously didn&amp;#x27;t spend every day actively working on it, it is by far my most long-during project. And it is still not polished or finished. This is just a interim result: I plan on adding more sensors, for instance a rain gauge and an anemometer, and publishing the dashboard which is currently only reachable in the home network. Weird bugs and a not working over-the-air update implementation are also issues, I recently fight with.&lt;/p&gt;
+&lt;p&gt;Now lets dive into the more interesting part: How does the station work and what sensors are build in? The weather station is autonomous, powered by a monocrystal solar panel, which charges a battery pack with 5W, it should be 24/7 online. &amp;quot;Should&amp;quot; is here the right wording, because the days are getting again shorter, more cloudy, thus less power can be produced by the panel. Though the battery pack has a lot of capacity (3x3000mAh), more than enough to bridge a few days, I will see the actual uptime hours in the next weeks.&lt;br&gt;
+To manage the incoming power, instead of cooking the ESP32, I decided to go with a solar power manager board, that sits between the microcontroller and the solar panel. It charges the batteries consistent and savely, watching out that they don&amp;#x27;t overcharge and eventually getting destroyed. At the same time, it continuously and steady provides the ESP its 5V.&lt;/p&gt;
+&lt;p&gt;So far, a BME280 measures temperature, humidity and air pressure. In order to ensure that no rain or long-term UV radiation destroys the sensor, it&amp;#x27;s enclosed by a Stevenson Screen, that, however, exposes the sensor to the surroundings. Consequently, is the sensor safe, but is still able to take valid measurements.&lt;/p&gt;
+&lt;p&gt;Like mentioned before the weather station runs cyclically ever 10min. In the meantime, the ESP is in deep sleep to minimize its power consumption to roughly around 100µA. When wacking up, the ESP32 connects to WiFi, taking a measurement, cache it - to send later on an hourly overview -, publish it via a MQTT-subscription to my Broker (my Raspberry Pi), disconnects and shuts down again into deep sleep mode. Thereafter, a daemon writes the data to an InfluxDB bucket, where it is stored.&lt;/p&gt;
+&lt;p&gt;A dashboard, written with Typescript, NodeJS and Chartjs, visualizes then the data in an human-comprehendable form with graphs and gauges. It also shows air pressure, temperature and humidty trends, making it possible to predict (roughly) coming storms, low or high-pressure systems, as well as the weather behaviour for the next few hours.&lt;br&gt;
+Perhaps, I expand these options with a small model, which predicts weather changes, based on the data of the weather station, but this truely lies in the future and doesn&amp;#x27;t have an as high priority as other more closer goals.&lt;/p&gt;
+&lt;img src=&quot;https://jschxll.net/img/thoughts/image.png&quot; title=&quot;My final DIY waether station&quot; class=&quot;md-img&quot;&gt;
+&lt;p&gt;Here is a simple graph showing the history of air pressure over the last 14 days. You can’t see it anymore, but in Germany about three weeks ago, a large low-pressure system with a huge storm named “Joshua” arrived. The lowest measured air pressure was around 968 hPa. Since then, the weather has slowly been recovering — which you can still see on the graph.&lt;/p&gt;</description><pubDate>Sun, 09 Nov 2025 00:00:00 +0000</pubDate>
+      <dc:creator>jschxll</dc:creator>
+      <guid>https://jschxll.net/thoughts/becoming_a_meterologist/</guid>
+    </item>
+    <item>
+      <title>Thoughts on 2001: A Space Odyssey</title>
+      <link>https://jschxll.net/thoughts/thoughts_on_2001/</link><description>&lt;p&gt;Perhaps I&amp;#x27;m a bit too late to share some thoughts on 2001: A Space Odyssey which made its debut in 1968, but on the other hand from cinematic point of view it has aged surprisingly very well.
+Without hesitation I would say it&amp;#x27;s a timeless classic. It even fits perfectly in current times, where AI got more present in peoples&amp;#x27; heads than ever - its potential but too its risks.&lt;/p&gt;
+&lt;h2&gt;On the Odyssey&lt;/h2&gt;
+&lt;p&gt;Stanley Kubrick, the producer and co-writer of the story together with Arthur C. Clark, portrays literally the evolution of mankind.
+It covers up the early stages of primats to a species that&amp;#x27;s able to fly to Jupiter and beyond.&lt;br&gt;
+Further, the work raises the question of the role of the human race in the vastness of universe and reflects on how tools shape us and vice versa. In the movie,
+evolutionary progress is driven by a strangly smooth, cold, alien-looking monolith. Throughout the movie it is never completely explained what it represents, neither its true meaning:
+Is it a metaphor for human unique ability to learn and think in abstract patterns or a continuation of the pansperma theory,
+where not only did one non-terrestial interlude change the course of life - namely the settlement of life itself - but evolution, too, was influenced by something like a kind of older civilisation?&lt;/p&gt;
+&lt;p&gt;Humanity traveled a long way to become a species no longer dependent on Earth. Its ancestors who were still prey to predators such as tigers,
+lived as gatheres and used their hands as their only tools to interact with the world. They were the first to behold this very monolith.
+There is no direct evidence of causal cause but a few sequences after the group of primals touched the strange structure,
+there were the first who thought of using bones as weapons. This had drastic consequences: They become hunters and, thus, were no longer helpless prey.&lt;/p&gt;
+&lt;p&gt;The next time the monolith become active is different: It is discovered as an anomaly in the magnetic field on the moon surface.
+As the group of scientists around Dr. Heywood Floyd met up in front of the monolith to take a photo, a high-pitched signal is emitted to Jupiter,
+where hypothetically is some kind of transponder. Six month later, a science team taking the voyage to Jupiter to study whatever they will find there.
+This is simutainously the farthest distance humanity has ever been away from Earth which emphasizes the role of the monolith as catalyst of evolutionary events.&lt;/p&gt;
+&lt;p&gt;But the mission doesn&amp;#x27;t take place as planned: A HAL-9000 - sometimes sarcastically outspoken as &amp;quot;Hell&amp;quot; - computer, known for never having made a single error,
+manipulated the mission by firstly spreading misinformation about a damaged antenna, than by taking more drastic options by killing one of the two pilots and the whole scientifc team which was in hibernation sleep during the flight.
+A known theory to explain this malfunction of HAL is an inner conflict: He was programmed to withhold any information about the objective of the mission - the monolith - to the crew as long as they were flying to Jupiter
+but has to simutainously process any information correctly and distortionless. So, the logical step for him to solve the paradox was to kill the crew (in his words the error is always on the human side).&lt;/p&gt;
+&lt;h3&gt;The horror of HAL&lt;/h3&gt;
+&lt;p&gt;The story isn&amp;#x27;t over yet, but I wanted to talk about my opinion on HAL. Personally, I think he is one of the most scariest parts of 2001 besides the ending sequence I will talk about soon. The red lights,
+which are his eyes all around the Discovery I are so unpredictable and emotionless which make them feel more comparable to shut doors than an entity with feelings - or even &lt;em&gt;human&lt;/em&gt;. Combine that with the
+sterile, ever too friendly, kind of persuasive voice and you want to crawl underneath a blanket. Personally, the shutdown scene of HAL was the climax of creepy feelings I had about him because his last words were parts of the lyrics of the song &amp;quot;Daisy Bell&amp;quot;, sung by
+a deep, highly distorted voice.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;quot;I can feel it. I can feel it. My mind is going. I can feel it. I can feel it. I can feel it. I am afraid.&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Though, I&amp;#x27;ve said there&amp;#x27;s nearly no way to feel empathic about HAL, his fear of death and decay is too human to not be affected by it.
+A machine capable of being concious about his own presence and its way to absence, raises the question when the gap between intelligent organic beings and machines disappear.
+When is something made of wires aware of itself to feel? Which requirements have to be met? Are humans just the same - thinking computers - but made of carbon?&lt;/p&gt;
+&lt;p&gt;Another theory what HAL could represent is the human stubbornness and selfishness. A thought subliminal in our brain that we don&amp;#x27;t make mistakes, that we judge rightous. The other side of the coin,
+which wants to stay the best in everything and contradicts the thought of being pushed aside by something bigger and beyond comprehension for the human mind.&lt;/p&gt;
+&lt;h2&gt;Whatever he is on, I need this too&lt;/h2&gt;
+&lt;p&gt;It is unreasonable to think that Stanley Kubrick wanted to show a drug trip experienced by Dave Bowman, but to be fair it resembles one too much to not be afraid loosing touch with reality when staring on
+the screen for too long. The what it feels like never ending scene of Dave Bowman, the last alive crew member, finally reaching Jupiter and transcending into a some kind of transdimensional space in which
+he visits entirely new galaxies, planets and landscapes, ends in a even more werid, perhaps even haunting scene, which is known as the zoo of the hypothetical higher entities which created or &lt;em&gt;are&lt;/em&gt; the monolith.&lt;/p&gt;
+&lt;h2&gt;Awareness of mortality is the highest form of evolution!?&lt;/h2&gt;
+&lt;p&gt;The grotesque, stereotypical, out of place looking victorian room with clinically clean floor, is Bowman&amp;#x27;s last stop before tranforming to a new kind of being: the &amp;quot;star child&amp;quot;.
+Bowman sees his life literally flashing before his eyes. He grows older and older while discovering the zoo but not as &lt;em&gt;one&lt;/em&gt; person, but as the younger self looking at his older one.&lt;/p&gt;
+&lt;p&gt;So: Is the realisation of mortality and insignificance as consequence of life the highest form of enlightment a species can archive after the several ego-boosts by its own might and technology.
+Is modesty the the furthest step in evolution? To accept? Maybe it is, maybe it&amp;#x27;s not: that&amp;#x27;s up to you. In my perspective and based on what is happening in the world right now, that&amp;#x27;s a destination worth aiming for.&lt;/p&gt;</description><pubDate>Thu, 04 Jun 2026 00:00:00 +0000</pubDate>
+      <dc:creator>jschxll</dc:creator>
+      <guid>https://jschxll.net/thoughts/thoughts_on_2001/</guid>
+    </item>
+    <item>
+      <title>++ reading ++</title>
+      <link>https://jschxll.net/thoughts/books/</link><description>&lt;p&gt;Book I currently read:&lt;/p&gt;</description><pubDate>Thu, 04 Jun 2026 08:55:19 +0000</pubDate>
+      <dc:creator>jschxll</dc:creator>
+      <guid>https://jschxll.net/thoughts/books/</guid>
+    </item>
+  </channel>
+</rss>
