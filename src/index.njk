@@ -2,7 +2,7 @@
 layout: base.njk
 title: Sights of My Life
 ---
-{% set latest = collections.thoughts | first %}
+{% set latest = collections.content.slice(-2) | reverse %}
 
 <h1 id="header">welcome to the machine</h1>
 <p>
@@ -22,9 +22,16 @@ title: Sights of My Life
   ahh, and I'm really interested in astronomy / star gazing 💫<br>
   Now let's go and get some <em>insights</em> :)
 </p>
-<h2>Latest content</h2>
+<h2>Latest updates</h2>
 <ul>
-    <li><a href="{{ latest.url }}">{{ latest.data.title }}</a></li>
+    {% for content in latest %}
+      <li>
+        <a href="{{ content.url }}">{{ content.data.title }}</a>
+        <br>
+        <small>-{{ content.date | date("dd/MM/yyyy") }}-</small>
+      </li>
+      <br>
+    {% endfor %}
 </ul>
 <p>
   <a href="/feed.xml">here</a> you'll find my feed!

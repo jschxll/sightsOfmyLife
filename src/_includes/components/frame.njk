@@ -1,6 +1,11 @@
-{% macro Frame(path, alt, caption) %}
-<figure class="gallery-card">
-  <img src="{{ path }}" alt="{{ alt }}" class="gallery-img" loading="lazy">
+{% macro Frame(path, alt, caption, isCover) %}
+{% if isCover %}
+  <figure class="cover">
+    <img src="{{ path }}" alt="{{ alt }}" class="cover-img" loading="lazy" draggable="false">
+{% else %}
+  <figure class="gallery-card">
+    <img src="{{ path }}" alt="{{ alt }}" class="gallery-img" loading="lazy" draggable="false">
+{% endif %}
   <figcaption>{{ caption }}</figcaption>
 </figure>
 {% endmacro %}

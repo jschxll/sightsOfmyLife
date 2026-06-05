@@ -16,11 +16,31 @@
       {{ Nav(collections) }}
       <article>
         <h1>{{ title }}</h1>
+        <section class="gallery-section">
+        {% set has_cover = false %}
+        {% for item in photos %}
+          {% if item.isCover %}
+            {% set has_cover = true %}
+          {% endif %}
+        {% endfor %}
+
+        {% if has_cover %}
+          <div class="cover-div">
+            {{ Frame(photos[0].src, "photo", photos[0].caption, photos[0].isCover) }}
+          </div>
+        {% endif %}
         <div class="gallery">
-            {% for item in photos %}
-                {{ Frame(item.src, "photo", item.caption) }}
-            {% endfor %}
+            {% if has_cover %}
+              {% for item in photos.slice(1) %}
+                  {{ Frame(item.src, "photo", item.caption, item.isCover) }}
+              {% endfor %}
+            {% else %}
+              {% for item in photos %}
+                  {{ Frame(item.src, "photo", item.caption, item.isCover) }}
+              {% endfor %}
+            {% endif %}
         </div>
+        </section>
       </article>
     </main>
     {{ CreativeCommons() }}

@@ -28,6 +28,10 @@ export default async function (eleventyConfig) {
     return collectionApi.getFilteredByTag("thoughts").reverse(); 
   });
 
+  eleventyConfig.addCollection("gallery", function(collectionApi) {
+    return collectionApi.getFilteredByTag("gallery").reverse(); 
+  });
+
   eleventyConfig.addTemplateFormats("mdx");
   eleventyConfig.addPassthroughCopy("src/bundle.css");
   eleventyConfig.addPassthroughCopy("src/img/**/*");

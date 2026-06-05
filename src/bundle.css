@@ -116,6 +116,17 @@ img {
   border-radius: 6px;
 }
 
+.cover-img {
+  display: block;
+  height: auto;
+  border-radius: 6px;
+}
+
+.gallery-section {
+  display: flex;
+  flex-direction: column;
+}
+
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));

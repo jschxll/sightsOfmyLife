@@ -3,7 +3,7 @@
     <a href="/">home</a>
     {% for name, col in coll %}
 
-        {% if name != "all" %}
+        {% if name != "all" and name != "content" %}
         <details name="topic">
             <summary>
                 <span>{{ name }}</span>
